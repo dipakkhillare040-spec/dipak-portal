@@ -1,10 +1,20 @@
+// Firebase SDK import
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// 🔥 YOUR REAL CONFIG (copy from Firebase)
 const firebaseConfig = {
-  apiKey: "AIzaSyC0ovsy4z24065EAWijE5rIP1roTjh9eLE",
+  apiKey: "PASTE_YOUR_REAL_API_KEY",
   authDomain: "dipak-portal.firebaseapp.com",
   projectId: "dipak-portal",
-  storageBucket: "dipak-portal.appspot.com",
+  storageBucket: "dipak-portal.firebasestorage.app",
   messagingSenderId: "395089848028",
   appId: "1:395089848028:web:fe3267620c3bfabfae7619"
 };
 
-firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Export
+export { auth };
