@@ -1,15 +1,13 @@
-const schemes = [
-  "PM Kisan Yojana",
-  "Ayushman Bharat",
-  "PM Awas Yojana",
-  "Digital India Scheme"
-];
+function login() {
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
 
-const list = document.getElementById("scheme-list");
-
-schemes.forEach(scheme => {
-  const div = document.createElement("div");
-  div.innerText = scheme;
-  div.style.padding = "10px";
-  list.appendChild(div);
-});
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+      document.getElementById("msg").innerText = "Login Success ✅";
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      document.getElementById("msg").innerText = error.message;
+    });
+}
