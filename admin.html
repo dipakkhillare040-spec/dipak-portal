@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Panel</title>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1>Admin Panel</h1>
+<h2>Admin Panel</h2>
 
 <input type="text" id="scheme" placeholder="Enter Scheme">
-<button onclick="addScheme()">Add</button>
+<button onclick="addScheme()">Add Scheme</button>
 
 <ul id="list"></ul>
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-<script src="firebase.js"></script>
+<!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<!-- Firebase Config -->
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCo7ovs4z24O65EAWijE5rIP1roTjh9el",   // 🔥 apna real key daalo
+  authDomain: "dipak-portal.firebaseapp.com",
+  projectId: "dipak-portal",
+  storageBucket: "dipak-portal.appspot.com",
+  messagingSenderId: "395089848028",
+  appId: "1:395089848028:web:fe3267620c3bfabfae7619"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
 
 <script>
-const db = firebase.firestore();
-
-// Add scheme
+// ADD DATA
 function addScheme() {
   const value = document.getElementById("scheme").value;
 
   db.collection("schemes").add({
     name: value
   });
+
+  document.getElementById("scheme").value = "";
 }
 
-// Show + Delete
+// SHOW DATA
 db.collection("schemes").onSnapshot(snapshot => {
   const list = document.getElementById("list");
   list.innerHTML = "";
@@ -41,6 +55,7 @@ db.collection("schemes").onSnapshot(snapshot => {
 
     const btn = document.createElement("button");
     btn.innerText = "Delete";
+
     btn.onclick = () => {
       db.collection("schemes").doc(doc.id).delete();
     };
