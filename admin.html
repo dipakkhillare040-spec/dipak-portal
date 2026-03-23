@@ -9,30 +9,46 @@
 <h1>Admin Panel</h1>
 
 <input type="text" id="scheme" placeholder="Enter Scheme">
-<button onclick="addScheme()">Add Scheme</button>
+<button onclick="addScheme()">Add</button>
 
+<ul id="list"></ul>
+
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="firebase.js"></script>
 
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyC0ovsy4z24065EAWijE5rIP1roTjh9eLE",
-  authDomain: "dipak-portal.firebaseapp.com",
-  projectId: "dipak-portal"
-};
-
-firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+// Add scheme
 function addScheme() {
   const value = document.getElementById("scheme").value;
 
   db.collection("schemes").add({
     name: value
   });
-
-  alert("Added!");
 }
+
+// Show + Delete
+db.collection("schemes").onSnapshot(snapshot => {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    const li = document.createElement("li");
+    li.innerText = doc.data().name;
+
+    const btn = document.createElement("button");
+    btn.innerText = "Delete";
+    btn.onclick = () => {
+      db.collection("schemes").doc(doc.id).delete();
+    };
+
+    li.appendChild(btn);
+    list.appendChild(li);
+  });
+});
 </script>
 
 </body>
