@@ -1,37 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>DipakMultiservices</title>
-<link rel="stylesheet" href="style.css">
+  <title>Dipak MultiServices</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1>DipakMultiservices</h1>
-<a href="login.html">Login</a>
+<header>
+  <h1>Dipak MultiServices</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Admin Login</a>
+  </nav>
+</header>
 
-<h2>Latest Schemes</h2>
-<ul id="scheme-list"></ul>
+<section class="hero">
+  <h2>Welcome to Dipak MultiServices</h2>
+  <p>Your trusted center for Government & Digital Services</p>
+  <a href="login.html" class="btn">Login Now</a>
+</section>
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-<script src="firebase.js"></script>
-
-<script>
-const db = firebase.firestore();
-
-db.collection("schemes").onSnapshot(snapshot => {
-  const list = document.getElementById("scheme-list");
-  list.innerHTML = "";
-
-  snapshot.forEach(doc => {
-    const li = document.createElement("li");
-    li.innerText = doc.data().name;
-    list.appendChild(li);
-  });
-});
-</script>
+<footer>
+  © 2026 Dipak MultiServices
+</footer>
 
 </body>
 </html>
