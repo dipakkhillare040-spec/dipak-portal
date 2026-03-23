@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DipakMultiservices</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>DipakMultiservices</h1>
+  <a href="login.html">Login</a>
+</header>
+
+<h2>Latest Government Schemes</h2>
+<ul id="scheme-list"></ul>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyC0ovsy4z24065EAWijE5rIP1roTjh9eLE",
+  authDomain: "dipak-portal.firebaseapp.com",
+  projectId: "dipak-portal"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Fetch data
+db.collection("schemes").onSnapshot(snapshot => {
+  const list = document.getElementById("scheme-list");
+  list.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    const li = document.createElement("li");
+    li.innerText = doc.data().name;
+    list.appendChild(li);
+  });
+});
+</script>
+
+</body>
+</html>
