@@ -1,13 +1,13 @@
 function login() {
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
   firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(function() {
-      alert("Login Success ✅");
-      window.location.href = "index.html";
+    .then((userCredential) => {
+      alert("Login Successful 🔥");
+      window.location.href = "admin.html";
     })
-    .catch(function(error) {
-      alert(error.message);
+    .catch((error) => {
+      document.getElementById("msg").innerText = error.message;
     });
 }
