@@ -4,7 +4,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-aut
 
 // 🔥 YOUR REAL CONFIG (copy from Firebase)
 const firebaseConfig = {
-  apiKey: "PASTE_YOUR_REAL_API_KEY",
+  apiKey: "AIzaSyCo7ovs4z24O65EAWijE5rIP1roTjh9el",
   authDomain: "dipak-portal.firebaseapp.com",
   projectId: "dipak-portal",
   storageBucket: "dipak-portal.firebasestorage.app",
